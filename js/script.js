@@ -1,13 +1,13 @@
 
-var hexToR = function(h){
+var getRed = function(h){
    return parseInt((cutHex(h)).substring(0,2),16);
 };
 
-var hexToG = function(h){
+var getGreen = function(h){
    return parseInt((cutHex(h)).substring(2,4),16);
 };
 
-var hexToB = function(h){
+var getBlue = function(h){
    return parseInt((cutHex(h)).substring(4,6),16);
 };
 
@@ -15,36 +15,45 @@ var cutHex = function(h){
    return (h.charAt(0)=="#") ? h.substring(1,7):h;
 };
 
-var keyCodeToHex = function(keyCode){
-   CHARS = {
-      "48":"0",
-      "49":"1",
-      "50":"2",
-      "51":"3",
-      "52":"4",
-      "53":"5",
-      "54":"6",
-      "55":"7",
-      "56":"8",
-      "57":"9",
-      "97":"a",
-      "98":"b",
-      "99":"c",
-      "100":"d",
-      "101":"e",
-      "102":"f",
-      "65":"A",
-      "66":"B",
-      "67":"C",
-      "68":"D",
-      "69":"E",
-      "70":"F",
-      "35":"#"
-   };
+var expand = function(hex){
+   var expanded = "";
    
-   var regExp = new RegExp(/![0-9a-fA-F#]/);
+   for(var i=0; i<hex.length; i++){
+      for(var j=0; j<2; j++){
+         expanded += hex.charAt(i);
+      }
+   }
    
-   return (regExp.test(keyCode) ? CHARS[keyCode] : "");
+   return expanded || "";
+}
+
+var hexToRgb = function(hex){
+   var rgb = "";
+   
+   hex = (hex.charAt(0)=="#") ? hex.substr(1,hex.length) : hex;
+   
+   if(hex.length == 3){
+      hex = expand(hex);
+   }
+   
+   var R = getRed(hex);
+   var G = getGreen(hex);
+   var B = getBlue(hex);
+
+   rgb = "rgb(" + R + "," + G + "," + B + ")";
+   
+   return rgb;
+}
+
+var resetBackground = function(){
+   $("#canvas").css('backgroundColor',"#284");
+}
+
+var setBackground = function(colorCode){
+   if(colorCode.charAt(0)=="#")
+      $("#canvas").css('backgroundColor', colorCode);
+   else
+      $("#canvas").css('backgroundColor', "#" + colorCode);
 }
 
 window.onresize = function(){
@@ -65,20 +74,26 @@ window.onload = function(){
    console.log(viewportWidth + "x" + viewportHeight);
    
    $("#hex").on("keyup", function(e){
-      var hexRegEx = new RegExp(/#(?:[0-9a-fA-F]{3}){1,2}/);
+      var hexRegExp = new RegExp(/^#?(?:[0-9a-fA-F]{3}){1,2}$/);
    
       var hex = $("#hex").val();
+      var rgb = "";
       
       if(hex + "x" == "x"){
-         console.log("Empty");
-         $("#canvas").css('backgroundColor',"#284");
+         hexString = "";
+         resetBackground();
       }
       
-      console.log(hex, e.keyCode);
+      if(hexRegExp.test(hex)){
+         setBackground(hex);
+         rgb = hexToRgb(hex);
+         $("#rgb").val(rgb);
+         console.log(hexToRgb(hex));
+      }
+      else{
+         resetBackground();
+      }
+      
+      console.log(hex);
    });
-   
-   R = hexToR("#FFFFFF");
-   G = hexToG("#FFFFFF");
-   B = hexToB("#FFFFFF");
-
 }
