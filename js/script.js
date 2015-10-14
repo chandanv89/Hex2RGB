@@ -40,7 +40,7 @@ var hexToRgb = function(hex){
    var G = getGreen(hex);
    var B = getBlue(hex);
 
-   rgb = "rgb(" + R + "," + G + "," + B + ")";
+   rgb = "rgb(" + R + ", " + G + ", " + B + ")";
    
    return rgb;
 }

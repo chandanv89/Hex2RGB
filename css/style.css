@@ -16,6 +16,7 @@
 #brand{
    font: normal 700 18px/34px 'Roboto Condensed', sans-serif;
    color: white;
+   letter-spacing: 3px;
    text-decoration: none;
    margin: 10px 5px;
 }
@@ -33,11 +34,13 @@
 
 #container input{
    display: block;
-   margin: 10px auto;
+   margin: 5px auto 25px auto;
+   padding: 5px 15px;
    font-size: 34px;
+   font-family: 'Roboto Condensed';
    border-bottom: 1px dashed silver;
    background-color: transparent;
-   line-height: 42pt;
+   line-height: 40px;
    color: white;
    text-shadow: 1px 1px 0px black;
 }
@@ -71,3 +74,4 @@ input:focus{
 #abouts a:hover{
    opacity: 1;
 }
+
