@@ -1,0 +1,48 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700);
+
+*{
+   margin: 0;
+   padding: 0;
+   border: none;
+}
+
+#canvas{
+   background-color: #284;
+   font-family: 'Roboto Condensed', sans-serif;
+   height: 100%;
+   width: 100%;
+}
+
+#brand{
+   font: normal 700 18px/34px 'Roboto Condensed', sans-serif;
+   color: white;
+   text-decoration: none;
+   margin: 10px 5px;
+}
+
+#brand:hover{
+   border-top: 1px dotted white;
+   border-bottom: 1px dotted white;
+}
+
+#container{
+   border: 1px dotted silver;
+   border-radius: 10px;
+   margin: 10px auto;
+   padding: 25px 50px;
+}
+
+#container input{
+   display: block;
+   margin: 10px auto;
+   font-size: 34px;
+   border-bottom: 1px dashed silver;
+   background-color: transparent;
+   line-height: 42pt;
+   color: white;
+}
+
+input:focus{
+   border: none;
+   outline: none;
+}
