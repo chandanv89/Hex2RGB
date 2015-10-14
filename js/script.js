@@ -81,19 +81,21 @@ window.onload = function(){
       
       if(hex + "x" == "x"){
          hexString = "";
+         rgb = "";
          resetBackground();
       }
       
       if(hexRegExp.test(hex)){
          setBackground(hex);
          rgb = hexToRgb(hex);
-         $("#rgb").val(rgb);
          console.log(hexToRgb(hex));
       }
       else{
+         rgb = "";
          resetBackground();
       }
       
+      $("#rgb").val(rgb);
       console.log(hex);
    });
 }
